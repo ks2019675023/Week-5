@@ -1,0 +1,117 @@
+Command			Action
+vi-command file		Open file, execute command, which is usually a search command or line num-ber (POSIX)
+vi+/pattern file	Open file directly at pattern
+ex file			Invoke ex on file
+ex-file<script		Invoke ex on file, taking commands from script;suppress informative mes-sages and prompts
+ex-s file<script 	Invoke ex on file, taking commands from script;suppress informative mes-sages and prompts(POSIX)
+
+Vi Commands
+Vi commands are used in "screnn" mode(the defult), where you use the commands to move around the screen and to per-form operations on the text.
+Most vi commands follow a general pattern:
+[command][number]textobtect
+or the equivalent from:
+[number][command]textobtect
+
+Movement Commands
+vi movement commmans distinguish between two kinds of "words."The lowercase commands define a word as a contig-uous sequence of underscores, letters, and digits. The upper-case commands define a word as a contiguous sequence of nonwhitespace characters.
+
+Command			Meaning
+Character
+h,j,k,l			left, down, up, right
+Text
+w,W,b,B			Forward, backward by word
+e, E			End of word
+),(			Beginnig of next, previous sentence
+},{			Begining of next, previous paragraph
+]],[[			Begining of next, previous section
+Lines
+ENTER			First nonblank character of next line
+0,$			First, last position of current line
+^			First nonblank character of current line
++,-			First nonblank character of next, previous line
+n l			Column n of current line
+H,M,L			Top,middle,last line of screen
+n H			n(number) of lines after top line
+n L			n(number) of lines before last line
+Scrolling
+CTRL_F, CTRL_B		scroll forward, backward one screen
+CTRL_D, CTRL_U		Scroll down, up one half-screen
+CTRL_E, CTRL_Y		Show one more line at bottom, top of window
+z ENTER			Repostion line with cursor:to top of screen
+z .			Repostion line with cursor:to middle of screen
+z -			Repostion line with cursot:to bottom of screem
+CTRL_L			Redraw screen(without scrolling)
+Searches
+/pattern		search forward for pattern
+?pattern		search backward for pattern
+n,N			Repeat last search in same, opposite direciton
+/,?			Pepeat previous search forward, backward
+f x			Search forward for character x in currentline
+F x			Search backward for character x in cyrrentline
+t x			Search forward to character before x in cur-rent line
+T x			Search backward to character after x in current line
+;			Repeat previous current-line search
+, 			Repeat previous current-line search in op-posite direction
+Line number
+CTPL_G			Display current line number
+n G			Move to line number n
+G			Move to last line in file
+: n			Move to line n in file
+Marking postion
+m x			Mark current postion as x
+'x			Move cursor to mark x(grave accent)
+' ' 			Return to previous mark or context (two grave accents)
+'x			Move to beginning of line containning mark x(single quote)
+' '			Return to beginning of line containing pre-viois mark(two single quotes)
+Insert
+i, a			insert text before, after cursor
+I, A			insert text before beginning,after end of line
+o,0			Open new line for text below, above cursor
+Charge
+cw			Change word
+cc			Change current line
+c motion		Change text between the cursot and the tar-get of motion
+C			Change to end of line
+r			Replace single character
+R			Type over(overwrite) characters
+s			Substitute:delete character and insert new text
+S			Substitute:delete current line and insert new text
+Delete, move
+x			Delete character under cursor
+X			Delete character before cursor
+dw			Delete word
+dd			Delete current line
+d motion		Delete text between the cursor and the target of motion
+D			Delete to end of line
+p, P			put deleted text after, before cursor
+"n p			put text from delete buffer number n after cursot(for last nine deletions)
+Yank
+yw			Yank(copy)word
+yy			Yank current line
+"a yy			Yank current line into named buffer a (a-z);uppercase se name append text
+y motion		Yank text between the cursor and the target of motion
+p, pP			Put yanked text after, before cursot
+"a P			Put text from buffer a before cursor(a-z)
+Other commands
+.			repeat last edit command
+u, U			undo last edit; restore current line
+J			Join two lines
+ex edit commands
+:d			Delete lines
+:m			Move lines
+:co or :t		Copy lines
+:.,$d			Delete from current line to end of file
+:30,60m0		Move line 30 through 60 to top of file
+:.,/pattern/co$		Copy from current line through line contain-ing pattern to end of file
+
+Exit Commands
+
+command			Meaning
+:w			write(save)file
+:w!			write(save)file, overriding protection
+:wq			write(save) and quit file
+:x			write(save) and quit file
+ZZ			write(save) and quit file
+:30,60w newfile		write from line 30 through line 60 as newfile
+:30,60w>> file		write from line 30 through line 60 and append to file
+
